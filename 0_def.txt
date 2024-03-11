@@ -1,0 +1,41 @@
+def node:
+    - event driven IO
+        - non-blocking IO framework
+    - a tool for networking
+        written on top of Google V8(Dahl, 2011)
+
+    - single-threaded process
+        - share-nothing model
+            must use a protocol to talk to other process
+                - protocol = {tcp, http, grpc ...}
+
+    - applications:
+        - networking services
+        - ...
+properties (Dahl, 2011):
+    the program never:
+        - stops
+        - sleep
+        - execute IO and wait
+            example: open file, fetch URL
+
+        NB: the ability to sleep is sealed off completely in node.
+        You can only idle:
+            in idle:
+                - CPU usage goes to zero
+                - OS unschedules it
+
+        hence non-blocking
+    examples:
+        src/node/0_non_block_1.js
+        src/node/0_non_block.js
+
+    process exit:
+        - node waits until all calla=backs are resolved 
+            before gracefull automatically existing
+
+alternatives:
+    Deno: https://github.com/denoland
+
+References:
+    Dahl, R. Introduction to Node.js with Ryan Dahl. 2011. https://www.youtube.com/watch?v=jo_B4LTHi3I
